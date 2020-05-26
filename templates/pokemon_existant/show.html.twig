@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PokemonExistant{% endblock %}
+
+{% block body %}
+    <h1> {{name}}</h1>
+    {{error}}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pokemon_existant.id }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ pokemon_existant.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Xp</th>
+                <td>{{ pokemon_existant.xp }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ pokemon_existant.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ pokemon_existant.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+     <a href="{{ path('pokemon_existant_entrainement', {'id': pokemon_existant.id}) }}"><button class="btn btn-warning" type="button" {% if disabled == "true" %} disabled {% endif %}> Entrainer! </button></a>
+
+    {% if disabled == "true" %}
+        <a href="{{ path('pokemon_existant_retirer_vente', {'id': pokemon_existant.id}) }}"><button class="btn btn-info" type="button"> Retirer de la vente </button></a>
+        <a href="{{ path('pokemon_existant_vente', {'id': pokemon_existant.id}) }}"><button class="btn btn-info" type="button"> Modifier le prix </button></a>
+    {% else %}
+
+      <a href="{{ path('pokemon_existant_vente', {'id': pokemon_existant.id}) }}"><button class="btn btn-info" type="button"> Mettre en vente </button></a>
+    {% endif %}
+
+
+
+    <a href="{{ path('pokemon_existant_index') }}">Retour à la liste</a>
+
+
+    {{ include('pokemon_existant/_delete_form.html.twig') }}
+{% endblock %}

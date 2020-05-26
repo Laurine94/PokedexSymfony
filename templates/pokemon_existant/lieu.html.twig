@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choix du lieu{% endblock %}
+
+{% block body %}
+    <h1>Choix du lieu</h1>
+
+<h5>{{error}}</h5>
+{% if error=="" %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lieu in lieux %}
+            <tr>
+                
+                <td>{{ lieu.nomLieu }}</td>
+                <td>
+                    <a href="{{ path('pokemon_capture',{'idPoke':pokemon_existant.id,'id': lieu.id}) }}">Capturer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+{% endif %}
+  <a href="{{ path('pokemon_existant_index') }}">Retour à la liste</a>
+
+
+{% endblock %}

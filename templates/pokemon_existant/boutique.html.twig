@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique de pokemons{% endblock %}
+
+{% block body %}
+    <h1>Boutique</h1>
+    <h5> Vous disposez de {{pieces}} pièces</h5>
+    <h6>{{error}}</h6>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Sexe</th>
+                <th>Xp</th>
+                <th>Niveau</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pokemon in pokemonVente %}
+            <tr>
+                
+                <td>{{ pokemon.nom }}</td>
+                <td>{{ pokemon.sexe }}</td>
+                <td>{{ pokemon.xp }}</td>
+                <td>{{ pokemon.niveau }}</td>
+                <td>{{ pokemon.prix }}</td>
+                <td>
+                <a href="{{ path('pokemon_achat', {'id': pokemon.id}) }}">Acheter</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
